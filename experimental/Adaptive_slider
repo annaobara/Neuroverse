@@ -1,0 +1,40 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+public class AdaptiveSmoothedSlider : MonoBehaviour
+{
+    public Slider slider;                   // Unity UI Slider
+    public float baseSmoothing = 0.1f;      // Controls overall smoothing level
+    public float maxSmoothing = 0.5f;       // Upper limit for smoothing
+    public float minSmoothing = 0.01f;      // Lower limit for responsiveness
+
+    private float smoothedValue = 0f;
+    private float previousRawValue = 0f;
+
+    void Start()
+    {
+        smoothedValue = slider.value;
+        previousRawValue = slider.value;
+    }
+
+    void Update()
+    {
+        float rawValue = slider.value;
+
+        // Calculate the rate of change
+        float changeRate = Mathf.Abs(rawValue - previousRawValue) / Time.deltaTime;
+
+        // Calculate adaptive alpha (smoothing factor)
+        float adaptiveAlpha = baseSmoothing / (changeRate + 0.001f);
+        adaptiveAlpha = Mathf.Clamp(adaptiveAlpha, minSmoothing, maxSmoothing);
+
+        // Apply exponential smoothing
+        smoothedValue += adaptiveAlpha * (rawValue - smoothedValue);
+
+        // Use the smoothed value (e.g., for volume)
+        AudioListener.volume = smoothedValue;
+
+        // Store for next frame
+        previousRawValue = rawValue;
+    }
+}

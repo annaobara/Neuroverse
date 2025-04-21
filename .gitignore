@@ -1,2 +1,8 @@
-.env
+# From neuroverse
+Library/
+Temp/
 .DS_Store
+
+# From XR Toolkit
+[Ll]ogs/
+[Bb]uild/

@@ -25,65 +25,47 @@ public class CalibrationLogger : MonoBehaviour {
     [Header("🎛️ UI Elements")]
     public List<Slider> calibrationSliders;
     public List<string> sliderContexts;
+    public List<string> perceptualLabels;
 
     private CalibrationLog log = new CalibrationLog();
     private bool consentGiven = false;
 
     private void Start() {
-        if (consentToggle != null)
-            consentToggle.onValueChanged.AddListener(OnConsentChanged);
-
+        // Attach event listeners
         for (int i = 0; i < calibrationSliders.Count; i++) {
-            int index = i;
+            int index = i; // fix closure
             calibrationSliders[index].onValueChanged.AddListener(value => OnSliderChanged(index, value));
         }
+
+        if (consentToggle != null)
+            consentToggle.onValueChanged.AddListener(OnConsentChanged);
     }
 
-    public void OnConsentChanged(bool value) {
+    void OnConsentChanged(bool value) {
         consentGiven = value;
     }
 
-    private void OnSliderChanged(int index, float value) {
+    void OnSliderChanged(int index, float value) {
         if (!consentGiven) return;
 
-        string parameterName = calibrationSliders[index].name;
-        string context = sliderContexts[index];
-        string perceptualLabel = GetPerceptualLabel(value, context);
-        string fullContext = $"User is adjusting {context.ToLower()} sensitivity";
-
-        LogSliderChange(parameterName, value, fullContext, perceptualLabel);
-    }
-
-    public void LogSliderChange(string parameterName, float value, string context, string perceptualLabel) {
         CalibrationEntry entry = new CalibrationEntry {
-            timestamp = DateTime.UtcNow.ToString("o"),
-            parameterName = parameterName,
+            timestamp = DateTime.UtcNow.ToString("s"),
+            context = sliderContexts[index],
+            parameterName = calibrationSliders[index].name,
             value = value,
-            context = context,
-            perceptualLabel = perceptualLabel
+            perceptualLabel = GetPerceptualLabel(value)
         };
 
         log.entries.Add(entry);
-        Debug.Log($"📊 {context}: {parameterName} = {value} ({perceptualLabel}) @ {entry.timestamp}");
+        Debug.Log($"[Calibration Log] {entry.parameterName} = {entry.value} ({entry.perceptualLabel})");
     }
 
-    private string GetPerceptualLabel(float value, string context) {
-        switch (context.ToLower()) {
-            case "visual":
-                return value < 0.4f ? "Dim" : value < 0.8f ? "Balanced" : "Bright";
+    string GetPerceptualLabel(float value) {
+        if (perceptualLabels == null || perceptualLabels.Count == 0)
+            return "Unlabeled";
 
-            case "audio":
-                return value < 1000f ? "Muffled" : value < 6000f ? "Clear" : "Crisp";
-
-            case "haptic":
-                return value < 0.3f ? "Soft" : value < 0.6f ? "Noticeable" : "Strong";
-
-            case "motion":
-                return value < 0.6f ? "Slow" : value < 1.2f ? "Natural" : "Fast";
-
-            default:
-                return "Unknown";
-        }
+        int index = Mathf.FloorToInt(value * (perceptualLabels.Count - 1));
+        return perceptualLabels[Mathf.Clamp(index, 0, perceptualLabels.Count - 1)];
     }
 
     public void SaveCalibrationLog() {
@@ -99,6 +81,7 @@ public class CalibrationLogger : MonoBehaviour {
         Debug.Log($"✅ Calibration log saved: {path}");
     }
 
+    // 🔁 Public method for re-applying loaded slider values
     public void ApplyValueToSlider(string paramName, float value) {
         foreach (Slider s in calibrationSliders) {
             if (s.name == paramName) {
@@ -109,6 +92,7 @@ public class CalibrationLogger : MonoBehaviour {
         }
     }
 
+    // 🔍 Load & apply full session
     public void LoadCalibrationLog(string filename) {
         string path = Path.Combine(Application.persistentDataPath, filename);
         if (!File.Exists(path)) {
@@ -126,6 +110,4 @@ public class CalibrationLogger : MonoBehaviour {
         Debug.Log($"✅ Loaded calibration session: {filename}");
     }
 }
-
-
 

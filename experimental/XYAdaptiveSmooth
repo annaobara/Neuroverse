@@ -1,0 +1,73 @@
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+
+public class UISmoothedXYCircleController : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler
+{
+    public RectTransform knob;
+    public RectTransform circleArea;
+
+    [Header("Adaptive Smoothing")]
+    public float minAlpha = 0.05f;
+    public float maxAlpha = 0.25f;
+    public float maxSpeed = 2.0f; // Max input speed in normalized units
+
+    private Vector2 rawInput;
+    private Vector2 smoothedInput;
+    private Vector2 lastInput;
+    private bool isDragging = false;
+
+    void Start()
+    {
+        smoothedInput = Vector2.zero;
+        lastInput = Vector2.zero;
+    }
+
+    void Update()
+    {
+        if (isDragging)
+        {
+            float speed = (rawInput - lastInput).magnitude / Time.deltaTime;
+            float normalizedSpeed = Mathf.Clamp01(speed / maxSpeed);
+            float alpha = Mathf.Lerp(minAlpha, maxAlpha, normalizedSpeed);
+
+            smoothedInput += alpha * (rawInput - smoothedInput);
+            lastInput = rawInput;
+
+            Vector2 knobPos = smoothedInput * (circleArea.rect.width / 2);
+            knob.anchoredPosition = knobPos;
+        }
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        UpdateInput(eventData);
+        isDragging = true;
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        UpdateInput(eventData);
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        isDragging = false;
+        rawInput = Vector2.zero;
+    }
+
+    void UpdateInput(PointerEventData eventData)
+    {
+        Vector2 localPoint;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(circleArea, eventData.position, eventData.pressEventCamera, out localPoint);
+
+        float radius = circleArea.rect.width / 2f;
+        Vector2 clamped = Vector2.ClampMagnitude(localPoint, radius);
+        rawInput = clamped / radius;
+    }
+
+    public Vector2 GetSmoothedOutput()
+    {
+        return smoothedInput;
+    }
+}

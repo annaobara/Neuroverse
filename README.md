@@ -1,43 +1,20 @@
 # Neuroverse: Adaptive VR for Neurodivergent Empathy
 [![Docs](https://img.shields.io/badge/wiki-Documentation-blue?logo=github)](https://github.com/Ziforge/Neuroverse/wiki)
 [![Overleaf](https://img.shields.io/badge/View%20Thesis-Overleaf-brightgreen?logo=Overleaf&logoColor=white)](https://www.overleaf.com/read/nddwcrqrpbcs#c4cd87)
+
 ---
 [![Weekly Timesheet](https://img.shields.io/badge/Open_This_Week's_Timesheet-blue?style=for-the-badge)](https://github.com/Ziforge/Neuroverse/blob/main/weekly_notes/week-13-timesheet.md)
 [![📋 Neuroverse Sprint Board](https://img.shields.io/badge/Project%20Board-Neuroverse-green?style=for-the-badge)](https://github.com/users/Ziforge/projects/1/views/1)
 [![🧠 Sensory Calibration Questionnaire](https://img.shields.io/badge/Questionnaire-%F0%9F%A7%A0-blue?style=for-the-badge)](https://github.com/Ziforge/Neuroverse/wiki/Sensory-Calibration-Questionnaire)
 [![🛡️ GDPR Consent Form](https://img.shields.io/badge/GDPR%20Consent-View%20Policy-blue?style=for-the-badge)](https://github.com/Ziforge/Neuroverse/wiki/GDPR-Consent-Form)
+=======
+
+
 > 🌍 A VR platform that adapts to individual sensory needs — connecting neurodivergent and neurotypical users through shared, empathetic interaction.
 
 This project explores adaptive sensory filtering and profile blending in shared VR experiences between neurotypical and neurodivergent individuals. Built in Unity using C# and deployed on Meta Quest 3.
 
-## 🧠 Features
-
-
-# Interaction Ruleset Diagram
-
-This system consists of three distinct rectangular zones that define how an ND (neurodivergent) and NT (neurotypical) user interact spatially and through control of settings.
-
-## Description
-
-- **Rectangle 1 (R1)**:  
-  For the **ND user**  
-  - Settings are **fixed**
-  - Settings are **set by NT**
-  - If the ND user moves too far, they are **considered gone**
-
-- **Rectangle 3 (R3)**:  
-  For the **NT user**  
-  - Has **no control** over settings
-  - Has access to a **killswitch**
-  - No gradient, no influence over shared environment
-
-- **Rectangle 2 (R2)**:  
-  The **shared gradient zone**
-  - Represents a **blended settings** space between ND and NT areas
-
----
-
-## 📈 Mermaid Diagram
+## 🧠 
 
 ```mermaid
 flowchart TB
@@ -48,9 +25,9 @@ flowchart TB
     style NT fill:#f4cccc,stroke:#333,stroke-width:2px,color:#000
 
     ND[ND Zone\nStable Settings\nControlled by ND]
-    SubNT[Subzone:\nND experiences\nfull ND world]
+    SubNT[Subzone:\nND experiences\nfull NT world]
     Shared[Gradient Zone\nMixed Settings\nBoth Users Present]
-    SubND[Subzone:\nNT experiences\nfull NT world]
+    SubND[Subzone:\nNT experiences\nfull ND world]
     NT[NT Zone\nNo Control\nEmergency Kill Switch]
 
     ND --> SubNT
@@ -59,17 +36,12 @@ flowchart TB
     SubND --> Shared
 ```
 
----
-
-### 🔍 Summary of Flow:
-- **ND → SubNT → Shared**
-- **NT → SubND → Shared**
-- Both users enter subzones where they temporarily experience the *full world* of the other
-- They converge in the **Shared zone** — a balanced adaptive space
 
 
 ```mermaid
 flowchart TD
+    A1[Controller 🎮 Y button] --> B1[Kill all sound - mute]
+    A2[Controller 🎮 B button] --> B2[Kill all visual changes]
     A[Raise Wrist 🧠] --> B{Input Type?}
 
     B -- "Hand Tracking ✋" --> C[Tap Wrist to Open UI 👆]
@@ -146,6 +118,8 @@ flowchart TD
 ```
 
     
+=======
+
 - Sensory calibration and profile prediction using ML
 - Real-time filtering (audio, visual, motion)
 - Shared user blending engine
@@ -195,3 +169,9 @@ Licensed under GPL-3.0 or MIT
 ## 👥 Contributing
 
 See [Contributing Guide on the Wiki](https://github.com/Ziforge/Neuroverse/wiki/Contributing‐to‐Neuroverse)
+---
+
+# XR Interaction Toolkit Examples
+
+This section contains example scenes and components from the XR Interaction Toolkit.
+Merged into Neuroverse for development and experimentation.

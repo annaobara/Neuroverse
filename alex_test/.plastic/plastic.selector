@@ -1,4 +1,0 @@
-repository "alex_test/groupB_ctrl@5773856460960@cloud"
-  path "/"
-    br "/main"
-    co "/main"

@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections; // Needed for IEnumerator / yield return
 
 public class SensorySettingsUI : MonoBehaviour
 {
@@ -13,13 +12,8 @@ public class SensorySettingsUI : MonoBehaviour
     public HapticManager hapticManager;
     public MotionSmoothingManager motionManager;
 
-    IEnumerator Start()
+    void Start()
     {
-        // ✅ Wait until UserProfileManager and CurrentProfile are initialized
-        yield return new WaitUntil(() =>
-            UserProfileManager.Instance != null &&
-            UserProfileManager.Instance.CurrentProfile != null);
-
         var profile = UserProfileManager.Instance.CurrentProfile;
 
         visualSlider.value = profile.VisualIntensity;
@@ -80,4 +74,3 @@ public class SensorySettingsUI : MonoBehaviour
         return "Unknown";
     }
 }
-

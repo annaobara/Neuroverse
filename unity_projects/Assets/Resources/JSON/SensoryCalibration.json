@@ -1,0 +1,240 @@
+{
+  "qTitle": "Sensory Calibration Questionnaire",
+  "qInstructions": "Welcome to Neuroverse! This brief questionnaire helps us tailor the experience to your comfort level by understanding your sensory preferences. All answers are anonymous and used only to adapt your environment.",
+  "qId": "neuroverseSCQ",
+  "questions": [
+    {
+      "pId": "page1",
+      "qType": "radio",
+      "qInstructions": "Visual Sensitivity",
+      "qData": [
+        {
+          "qId": "q1",
+          "qText": "How do you typically respond to bright lights or high-contrast visuals?",
+          "qMandatory": "true",
+          "qOptions": [
+            "I am highly sensitive",
+            "I have average tolerance",
+            "I am under-responsive",
+            "Prefer not to say"
+          ]
+        },
+        {
+          "qId": "q2",
+          "qText": "Would you like to disable visual adaptation (brightness/contrast changes)?",
+          "qMandatory": "true",
+          "qOptions": [
+            "Yes, opt out of visual adaptation",
+            "No, I am okay with it"
+          ]
+        }
+      ]
+    },
+    {
+      "pId": "page2",
+      "qType": "radio",
+      "qInstructions": "Auditory Sensitivity",
+      "qData": [
+        {
+          "qId": "q3",
+          "qText": "How do you react to overlapping or loud sounds?",
+          "qMandatory": "true",
+          "qOptions": [
+            "I am highly sensitive",
+            "I am generally okay with most sounds",
+            "I often don’t notice background sounds unless they're very loud",
+            "Prefer not to say"
+          ]
+        },
+        {
+          "qId": "q4",
+          "qText": "Would you like to disable auditory filtering (noise reduction/enhancement)?",
+          "qMandatory": "true",
+          "qOptions": [
+            "Yes, opt out of auditory adaptation",
+            "No, I am okay with it"
+          ]
+        }
+      ]
+    },
+    {
+      "pId": "page3",
+      "qType": "radio",
+      "qInstructions": "Motion & Transition Sensitivity",
+      "qData": [
+        {
+          "qId": "q5",
+          "qText": "How do you feel about fast movement or scene changes in VR?",
+          "qMandatory": "true",
+          "qOptions": [
+            "I get motion sick easily",
+            "I can tolerate moderate motion",
+            "I enjoy faster, more fluid motion",
+            "Prefer not to say"
+          ]
+        },
+        {
+          "qId": "q6",
+          "qText": "Would you like to disable adaptive motion smoothing?",
+          "qMandatory": "true",
+          "qOptions": [
+            "Yes, opt out of motion-based adaptation",
+            "No, I am okay with it"
+          ]
+        }
+      ]
+    },
+    {
+      "pId": "page4",
+      "qType": "radio",
+      "qInstructions": "Haptic (Touch/Vibration) Feedback",
+      "qData": [
+        {
+          "qId": "q7",
+          "qText": "How comfortable are you with vibration or tactile feedback in controllers?",
+          "qMandatory": "true",
+          "qOptions": [
+            "I find it overstimulating and would rather not have it",
+            "I am okay with soft haptics",
+            "I need strong, frequent tactile cues to stay engaged",
+            "Prefer not to say"
+          ]
+        },
+        {
+          "qId": "q8",
+          "qText": "Would you like to disable haptic feedback entirely?",
+          "qMandatory": "true",
+          "qOptions": [
+            "Yes, opt out of haptics",
+            "No, I am okay with it"
+          ]
+        }
+      ]
+    },
+    {
+      "pId": "page5",
+      "qType": "radio",
+      "qInstructions": "Neuroverse Sensory Experience Consent Form\n\nThank you for participating in the Neuroverse immersive experience. This research investigates sensory customization and shared VR interactions for neurodivergent and neurotypical users.\n\n🔐 Summary\n- You can opt in or out of specific sensory features.\n- You may withdraw at any time without consequence.\n- Data collected is anonymized and used only for non-commercial academic research.\n- You have the right to request deletion of your data (see GDPR section).\n\n🎮 Interaction and Movement Options\nYou will be presented with several movement strategies, including:\n\n🔄 Teleportation\n🎮 Smooth Locomotion (with speed and turn adjustments)\n⚡ Dash Movement\n🎯 Waypoint Autopilot\n\nThese features are intended to support your comfort and accessibility. You may opt in or out of any of them below.",
+      "qData": [
+        {
+          "qId": "dummy_consent",
+          "qText": "Please press 'Next' to continue.",
+          "qMandatory": "false",
+          "qOptions": [
+            "Continue"
+          ]
+        }
+      ]
+    },
+    {
+      "pId": "page6",
+      "qType": "radio",
+      "qInstructions": "Movement & Interaction Options\nThese features are intended to support your comfort and accessibility. You may opt in or out of any of them below:",
+      "qData": [
+        {
+          "qId": "q9",
+          "qText": "Would you like to use movement features?",
+          "qMandatory": "true",
+          "qOptions": [
+            "Yes, I would like to interact with movement controls",
+            "No, I prefer to remain stationary or use room-scale only"
+          ]
+        }
+      ]
+    },
+    {
+      "pId": "page7",
+      "qType": "checkbox",
+      "qInstructions": "If yes, which movement types would you like enabled?",
+      "qOptions": [
+        "Teleportation",
+        "Smooth Locomotion",
+        "Dash",
+        "Waypoint Navigation"
+      ],
+      "qData": [
+        {
+          "qId": "q10",
+          "qText": "Select the movement types you would like to enable:",
+          "qMandatory": "false"
+        }
+      ]
+    },
+    {
+      "pId": "page8",
+      "qType": "radio",
+      "qInstructions": "Auditory Features and Sound Preferences\nThis experience may include footstep sounds and environmental audio feedback that dynamically respond to your settings or terrain. You can control volume, texture, and whether sound is enabled at all.",
+      "qData": [
+        {
+          "qId": "q11",
+          "qText": "Would you like to include adaptive auditory feedback (e.g., footsteps)?",
+          "qMandatory": "true",
+          "qOptions": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "pId": "page9",
+      "qType": "radio",
+      "qInstructions": "Additional Profile Inputs (Optional)",
+      "qData": [
+        {
+          "qId": "q12",
+          "qText": "What best describes your neurotype?",
+          "qMandatory": "false",
+          "qOptions": [
+            "Autistic",
+            "ADHD",
+            "Neurotypical",
+            "Bipolar / Mood spectrum",
+            "Schizophrenia spectrum",
+            "Prefer not to say"
+          ]
+        },
+        {
+          "qId": "q13",
+          "qText": "Cultural Background",
+          "qMandatory": "false",
+          "qOptions": [
+            "Western / European",
+            "Nordic / Scandinavian",
+            "East Asian",
+            "Middle Eastern",
+            "Other / Prefer not to say"
+          ]
+        },
+        {
+          "qId": "q14",
+          "qText": "Gender Identity",
+          "qMandatory": "false",
+          "qOptions": [
+            "Female",
+            "Male",
+            "Non-binary / other",
+            "Prefer not to say"
+          ]
+        }
+      ]
+    },
+    {
+      "pId": "page10",
+      "qType": "radio",
+      "qInstructions": "Thank you!\nYour sensory preferences help make Neuroverse more inclusive and accessible.",
+      "qData": [
+        {
+          "qId": "thankyou",
+          "qText": "Press 'Next' to finish.",
+          "qMandatory": "false",
+          "qOptions": [
+            "Finish"
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+
